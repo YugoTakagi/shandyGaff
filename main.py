@@ -13,7 +13,9 @@ def main():
     #gm.run(True)
     #gm.run_line(True)
     #gm.run_cal(False)
-    gm.run_cal(True)
+    #gm.run_cal(True)
+    #gm.run_calab(False)
+    gm.run_calab(True)
 if __name__ == '__main__':
     print("++++    +++   ++  + start main +  ++   +++    ++++")
     main()
