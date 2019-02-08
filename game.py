@@ -184,7 +184,7 @@ class game(object):
     def run_cal(self, anime):
         print("+++ game start")
         ##init #################################################################
-        num = 10000
+        num = 1000
         bz = bezier(number_of_points=num)
         tg = target(self.dt)
         ##init bezier###########################################################
