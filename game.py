@@ -12,7 +12,7 @@ from matplotlib import animation
 #'''
 class game(object):
     """docstring for game_class."""
-    dt = 0
+    dt = 0.0
     def __init__(self, dt):
         self.dt = dt
     def run(self, anime):
