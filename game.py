@@ -9,6 +9,7 @@ import csv
 #'''
 import matplotlib.animation as animation
 from matplotlib import animation
+#from tqdm import tqdm
 #'''
 class game(object):
     """docstring for game_class."""
@@ -33,6 +34,13 @@ class game(object):
         ##init accel_designer###################################################
         xs = 0.0                                #x start
         ts = 0.0                                #t start
+        #'''test
+        A  = [0.25, 0.25, 0.25, 0.25]
+        VEL=[[0.25, 0.0, 0.05],                   #vell_want, vell_start, vell_end
+             [0.25, 0.05, 0.05],                   #vell_want, vell_start, vell_end
+             [0.25, 0.05, 0.05],                   #vell_want, vell_start, vell_end
+             [0.25, 0.05, 0.05]]                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+        #'''
         '''1
         A  = [1.0, 1.0, 1.0, 1.0]
         VEL=[[1.0, 0.0, 0.6],                   #vell_want, vell_start, vell_end
@@ -41,7 +49,7 @@ class game(object):
              [1.0, 0.6, 0.6]]                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
         #'''
 
-        #'''2
+        '''2
         A  = [2.0, 2.0, 2.0, 2.0]
         VEL=[[2.2, 0.0, 0.6],                   #vell_want, vell_start, vell_end
              [2.2, 0.6, 0.6],                   #vell_want, vell_start, vell_end
@@ -207,8 +215,375 @@ class game(object):
         LINE0  = self.line_making2(xl0, yl0, num)
         LINE1  = self.line_making2(xl1, yl1, num)
         LINE2  = self.line_making2(xl2, yl2, num)
-        #BEZIER_ANCER1 = np.array([[0,0],[0,1.4],[-1.43,0.1],[-1.43,1.5]], dtype=np.float)
-        #BEZIER4 = bz.bezier_making(BEZIER_ANCER4, 3)
+        BEZIER_ANCER1 = np.array([[0,0],[0,1.4],[-1.43,0.1],[-1.43,1.5]], dtype=np.float)
+        BEZIER1 = bz.bezier_making(BEZIER_ANCER1, 3)
+
+        ##init accel_designer###################################################
+        xs = 0.0                                #x start
+        ts = 0.0                                #t start
+
+        #'''test
+        a = 0.5
+        A  = [a, a, a, a, a, a, a, a]
+        vw = 1.0
+        VEL=[[vw, 0.0, vw/2],                    #vell_want, vell_start, vell_end
+             [vw/2, vw/2, vw/2],                   #vell_want, vell_start, vell_end
+             [vw, vw/2, vw/2],                    #vell_want, vell_start, vell_end
+             [vw/2, vw/2, vw/2],                   #vell_want, vell_start, vell_end
+             [vw, vw/2, vw/2],                    #vell_want, vell_start, vell_end
+             [vw/2, vw/2, vw/2],
+             [vw/2, vw/2, vw/2]]                   #vell_want, vell_start, vell_end
+        #'''
+        '''1
+        A  = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+        VEL=[[1.3, 0.0, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [1.1, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.1, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6]]
+        #'''
+        '''1:1.0
+        A  = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+        VEL=[[1.4, 0.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.3, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.3, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0]]
+        #'''
+        '''2
+        A  = [2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+
+        VEL=[[1.7, 0.0, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [1.4, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.4, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6]]
+        #'''
+        '''2:1.0
+        A  = [2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+
+        VEL=[[1.8, 0.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.6, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.6, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0]]
+        #'''
+        '''3
+        A  = [3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+
+        VEL=[[2.0, 0.0, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [1.5, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.5, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6]]
+        #'''
+        '''3:1.0
+        A  = [3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+
+        VEL=[[2.2, 0.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.8, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.8, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0]]
+        #'''
+
+        BEZIER = [LINE0, CIRCLE0, LINE1, CIRCLE1, LINE2, CIRCLE2, BEZIER1]
+        ##def target_make(self, a, BEZIER, VEL, x_start, time_start, num):   * a := float
+        REF, t, x, vx, vy, alfa = tg.target_make(A, VEL, BEZIER, xs, ts, 7)
+        npREF = np.array(REF)
+
+        print("game time  := {}[s]".format(t))
+        print("game lenge := {}[m]".format(x))
+        self.plot(npREF)
+
+        with open('csv_item/x_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(npREF.T[0])
+        with open('csv_item/y_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(npREF.T[1])
+        '''
+        with open('csv_item/test.csv', 'w') as f:
+            writer = csv.writer(f)
+            #writer.writeheader()
+            writer.writerow(NEW_LOBS.T[0])
+            writer.writerow(NEW_LOBS.T[1])
+        '''
+        ##csv###################################################################
+        with open('csv_item/vx_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(vx)
+        with open('csv_item/vy_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(vy)
+        with open('csv_item/alfa_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(alfa)
+        ########################################################################
+        if anime == True:
+            self.plot_size(npREF)
+            self.anime_ff(vx, vy, alfa)
+        print("+++ end game")
+    def runCalBlue(self, anime):
+        print("+++ game start")
+        ##init #################################################################
+        num = 1000
+        bz = bezier(number_of_points=num)
+        tg = target(self.dt)
+        ##init bezier###########################################################
+        xc = +0.725
+        yc=[1.5, 3.0, 4.5]
+        r=0.53 +0.1
+        CIRCLE0 = self.circleMakingBlue(xc, yc, r, 0)
+        CIRCLE1 = self.circleMakingBlue(xc, yc, r, 1)
+        CIRCLE2 = self.circleMakingBlue(xc, yc, r, 2)
+        #print(CIRCLE0[0], CIRCLE0[len(CIRCLE0)-1])
+        #print(CIRCLE0[0][0], CIRCLE0[0][1])
+
+        xl0 = [0.0, CIRCLE0[0][0]]
+        yl0 = [0.0, CIRCLE0[0][1]]
+        xl1 = [CIRCLE0[len(CIRCLE0)-1][0], CIRCLE1[0][0]]
+        yl1 = [CIRCLE0[len(CIRCLE0)-1][1], CIRCLE1[0][1]]
+        xl2 = [CIRCLE1[len(CIRCLE1)-1][0], CIRCLE2[0][0]]
+        yl2 = [CIRCLE1[len(CIRCLE1)-1][1], CIRCLE2[0][1]]
+        xl3 = [xc, xc]
+        yl3 = [6.5, 8.0-0.5]
+        xl4 = [xc+0.45, 4.5-0.5]
+        yl4 = [8.0+0.45 -0.5, 8.0+0.45 -0.5]
+
+        LINE0  = self.line_making2(xl0, yl0, num)
+        LINE1  = self.line_making2(xl1, yl1, num)
+        LINE2  = self.line_making2(xl2, yl2, num)
+        BEZIER_ANCER1 = np.array([[CIRCLE2[len(CIRCLE1)-1][0], CIRCLE2[len(CIRCLE1)-1][1]],[CIRCLE2[len(CIRCLE1)-1][0] -0.4, CIRCLE2[len(CIRCLE1)-1][1] +0.4],[xc +0.01,6.5 -0.5],[xc,6.5]], dtype=np.float)
+        BEZIER1 = bz.bezier_making(BEZIER_ANCER1, 3)
+        LINE3  = self.line_making2(xl3, yl3, num)
+        BEZIER_ANCER2 = np.array([[xc, 8.0-0.5],[xc, 8.0+0.5-0.5],[xc+0.5, 8.0+0.45 -0.5],[xc+0.45, 8.0+0.45 -0.5]], dtype=np.float)
+        BEZIER2 = bz.bezier_making(BEZIER_ANCER2, 3)
+        LINE4  = self.line_making2(xl4, yl4, num)
+
+        ##init accel_designer###################################################
+        xs = 0.0                                #x start
+        ts = 0.0                                #t start
+
+        #'''test
+        a = 0.5
+        A  = [a, a, a, a, a, a, a, a, a, a, a]
+        vw = 0.5
+        VEL=[[vw, 0.0, vw/2],                    #vell_want, vell_start, vell_end
+             [vw/2, vw/2, vw/2],                 #vell_want, vell_start, vell_end
+             [vw, vw/2, vw/2],                    #vell_want, vell_start, vell_end
+             [vw/2, vw/2, vw/2],                   #vell_want, vell_start, vell_end
+             [vw, vw/2, vw/2],                    #vell_want, vell_start, vell_end
+             [vw/2, vw/2, vw/2],
+             [vw/2, vw/2, vw/2],
+             [vw/2, vw/2, vw/2],
+             [vw/2, vw/2, vw/2],
+             [vw/2, vw/2, vw/2]]                   #vell_want, vell_start, vell_end
+        #'''
+        '''1
+        A  = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+        VEL=[[1.3, 0.0, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [1.1, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.1, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6]]
+        #'''
+        '''1:1.0
+        A  = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+        VEL=[[1.4, 0.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.3, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.3, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0]]
+        #'''
+        '''2
+        A  = [2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+
+        VEL=[[1.7, 0.0, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [1.4, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.4, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6]]
+        #'''
+        '''2:1.0
+        A  = [2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+
+        VEL=[[1.8, 0.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.6, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.6, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0]]
+        #'''
+        '''3
+        A  = [3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+
+        VEL=[[2.0, 0.0, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [1.5, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6],                   #vell_want, vell_start, vell_end 0.7, 0.6, 0.6
+             [1.5, 0.6, 0.6],                   #vell_want, vell_start, vell_end
+             [0.6, 0.6, 0.6]]
+        #'''
+        '''3:1.0
+        A  = [3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+
+        VEL=[[2.2, 0.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.8, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.8, 1.0, 1.0],                   #vell_want, vell_start, vell_end
+             [1.0, 1.0, 1.0]]
+        #'''
+
+        BEZIER = [LINE0, CIRCLE0, LINE1, CIRCLE1, LINE2, CIRCLE2, BEZIER1, LINE3, BEZIER2, LINE4]
+        ##def target_make(self, a, BEZIER, VEL, x_start, time_start, num):   * a := float
+        REF, t, x, vx, vy, alfa = tg.target_make(A, VEL, BEZIER, xs, ts, 10)
+        npREF = np.array(REF)
+
+        print("game time  := {}[s]".format(t))
+        print("game lenge := {}[m]".format(x))
+        self.plot(npREF)
+
+        with open('csv_item/x_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(npREF.T[0])
+        with open('csv_item/y_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(npREF.T[1])
+        '''
+        with open('csv_item/test.csv', 'w') as f:
+            writer = csv.writer(f)
+            #writer.writeheader()
+            writer.writerow(NEW_LOBS.T[0])
+            writer.writerow(NEW_LOBS.T[1])
+        '''
+        ##csv###################################################################
+        with open('csv_item/vx_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(vx)
+        with open('csv_item/vy_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(vy)
+        with open('csv_item/alfa_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(alfa)
+        ########################################################################
+        if anime == True:
+            self.plot_size(npREF)
+            self.anime_ff(vx, vy, alfa)
+        print("+++ end game")
+    def runWayBlue(self, anime):
+        print("+++ game start")
+        ##init #################################################################
+        num = 10000
+        bz = bezier(number_of_points=num)
+        tg = target(self.dt)
+        ##init bezier###########################################################
+        #3.4
+        r = 0.35
+        BEZIER_ANCER1 = np.array([[0.0, 0.0],[-(3.4 -r) -0.15, -(2.0 -r) +1.0],[-(3.4 -r), -(2.0 -r) +0.1],[-(3.4 -r), -(2.0 -r)]], dtype=np.float)
+        BEZIER1 = bz.bezier_making(BEZIER_ANCER1, 3)
+
+        xl0 = [-(3.4 -r), -(3.4 -r)]
+        yl0 = [-(2.0 -r), -(2.0 -r) -3.5]
+        LINE0  = self.line_making2(xl0, yl0, num*10)
+        ##init accel_designer###################################################
+        xs = 0.0                                #x start
+        ts = 0.0                                #t start
+
+        #'''test
+        a = 0.5
+        A  = [a, a]
+        vw = 0.5/2
+        VEL=[[vw, 0.0, vw/2],
+             [vw/2, vw/2, 0.0]]                   #vell_want, vell_start, vell_end
+        #'''
+
+        BEZIER = [BEZIER1, LINE0]
+        ##def target_make(self, a, BEZIER, VEL, x_start, time_start, num):   * a := float
+        REF, t, x, vx, vy, alfa = tg.target_make(A, VEL, BEZIER, xs, ts, 2)
+        npREF = np.array(REF)
+
+        print("game time  := {}[s]".format(t))
+        print("game lenge := {}[m]".format(x))
+        self.plot(npREF)
+
+        with open('csv_item/x_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(npREF.T[0])
+        with open('csv_item/y_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(npREF.T[1])
+        '''
+        with open('csv_item/test.csv', 'w') as f:
+            writer = csv.writer(f)
+            #writer.writeheader()
+            writer.writerow(NEW_LOBS.T[0])
+            writer.writerow(NEW_LOBS.T[1])
+        '''
+        ##csv###################################################################
+        with open('csv_item/vx_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(vx)
+        with open('csv_item/vy_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(vy)
+        with open('csv_item/alfa_ref.csv', 'w') as f:
+            writer = csv.writer(f)  # writer
+            writer.writerow(alfa)
+        ########################################################################
+        if anime == True:
+            self.plot_size(npREF)
+            self.anime_ff(vx, vy, alfa)
+        print("+++ end game")
+    def run_cal2(self, anime):
+        print("+++ game start")
+        ##init #################################################################
+        num = 5000
+        bz = bezier(number_of_points=num)
+        tg = target(self.dt)
+        ##init bezier###########################################################
+        xc = -0.725
+        yc=[1.5, 3.0, 4.5]
+        r=0.53 +0.1
+        CIRCLE0 = self.circle_making(xc, yc, r, 0)
+        CIRCLE1 = self.circle_making(xc, yc, r, 1)
+        CIRCLE2 = self.circle_making(xc, yc, r, 2)
+        #print(CIRCLE0[0], CIRCLE0[len(CIRCLE0)-1])
+        #print(CIRCLE0[0][0], CIRCLE0[0][1])
+
+        xl0 = [0.0, CIRCLE0[0][0]]
+        yl0 = [0.0, CIRCLE0[0][1]]
+        xl1 = [CIRCLE0[len(CIRCLE0)-1][0], CIRCLE1[0][0]]
+        yl1 = [CIRCLE0[len(CIRCLE0)-1][1], CIRCLE1[0][1]]
+        xl2 = [CIRCLE1[len(CIRCLE1)-1][0], CIRCLE2[0][0]]
+        yl2 = [CIRCLE1[len(CIRCLE1)-1][1], CIRCLE2[0][1]]
+
+        LINE0 = self.line_making2(xl0, yl0, num)
+        LINE1 = self.line_making2(xl1, yl1, num)
+        LINE2 = self.line_making2(xl2, yl2, num)
+
+        BEZIER_ANCER2 = np.array([[CIRCLE2[len(CIRCLE2)-1][0], CIRCLE2[len(CIRCLE2)-1][1]],
+                                 [CIRCLE2[len(CIRCLE2)-1][0], CIRCLE2[len(CIRCLE2)-1][1] +0.75],
+                                 [xc, CIRCLE2[len(CIRCLE2)-1][1] +0.75 -0.2],
+                                 [xc,6.0]], dtype=np.float)
+        BEZIER2 = bz.bezier_making(BEZIER_ANCER2, 3)
+        Q1, Q2, Q3 = self.runWay1()
+        Q4, Q5, Q6, Q7 = self.runWay2()
         ##init accel_designer###################################################
         xs = 0.0                                #x start
         ts = 0.0                                #t start
@@ -264,19 +639,27 @@ class game(object):
              [0.6, 0.6, 0.6]]
         #'''
         #'''3:1.0
-        A  = [3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
+        A = [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0]
 
-        VEL=[[2.2, 0.0, 1.0],                   #vell_want, vell_start, vell_end
-             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
-             [1.8, 1.0, 1.0],                   #vell_want, vell_start, vell_end
-             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end
-             [1.8, 1.0, 1.0],                   #vell_want, vell_start, vell_end
-             [1.0, 1.0, 1.0]]
+        VEL=[[2.2, 0.0, 1.0],                   #vell_want, vell_start, vell_end #LINE0
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end #CIRCLE0
+             [1.8, 1.0, 1.0],                   #vell_want, vell_start, vell_end #LINE1
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end #CIRCLE1
+             [1.8, 1.0, 1.0],                   #vell_want, vell_start, vell_end #LINE2
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end #CIRCLE2
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end #BEZIER2
+             [2.3, 1.0, 1.0],                   #vell_want, vell_start, vell_end #Q1
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end #Q2
+             [2.5, 1.0, 1.0],                   #vell_want, vell_start, vell_end #Q3
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end #Q4
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end #Q5
+             [1.0, 1.0, 1.0],                   #vell_want, vell_start, vell_end #Q6
+             [1.0, 1.0, 1.0]]                   #vell_want, vell_start, vell_end #Q7
         #'''
 
-        BEZIER = [LINE0, CIRCLE0, LINE1, CIRCLE1, LINE2, CIRCLE2]
+        BEZIER = [LINE0,CIRCLE0,LINE1,CIRCLE1,LINE2,CIRCLE2,BEZIER2,Q1,Q2,Q3,Q4,Q5,Q6,Q7]
         ##def target_make(self, a, BEZIER, VEL, x_start, time_start, num):   * a := float
-        REF, t, x, vx, vy, alfa = tg.target_make(A, VEL, BEZIER, xs, ts, 6)
+        REF, t, x, vx, vy, alfa = tg.target_make(A, VEL, BEZIER, xs, ts, 10)
         npREF = np.array(REF)
 
         print("game time  := {}[s]".format(t))
@@ -455,6 +838,67 @@ class game(object):
             self.plot_size(npREF)
             self.anime_ff(vx, vy, alfa)
         print("+++ end game")
+    def runWay1(self):
+        w=0.6
+        lightHause1=[-6.4,8.0]
+        num=5000
+        r=w/2
+
+        Q1=[]
+        x1=-0.725
+        y1 = np.arange(6.0, 7.5+0.1, 1.5/num)
+        for i in np.arange(len(y1)):
+            Q1.append([x1, y1[i]])
+        npQ1=np.array(Q1)
+        Q2=[]
+        for i in np.arange(0.0, np.pi/2, np.pi/num):
+            Q2.append([r*np.cos(i)+x1-r,r*np.sin(i)+y1[len(y1)-1]])
+        npQ2=np.array(Q2)
+        Q3=[]
+        y3=npQ2.T[1][len(npQ2)-1]
+        x3=np.arange(npQ2.T[0][len(npQ2)-1],-4.0 -npQ2.T[0][len(npQ2)-1], -4.0/num)
+        for i in np.arange(len(x3)):
+            Q3.append([x3[i], y3])
+        npQ3=np.array(Q3)
+
+        QQ1=[]
+        QQ1.extend(Q1)
+        QQ1.extend(Q2)
+        QQ1.extend(Q3)
+        return Q1, Q2, Q3
+    def runWay2(self):
+        w=0.6
+        lightHause1=[-6.4,8.0]
+        num=5000
+        r=w/2
+
+        Q4=[]
+        for i in np.arange(0.0, np.pi/2, np.pi/num):
+            Q4.append([-r*np.cos(i)+lightHause1[0],r*np.sin(i)+lightHause1[1]])
+        npQ4=np.array(Q4)
+        Q5=[]
+        y5=npQ4.T[1][len(npQ4)-1]
+        x5=np.arange(npQ4.T[0][len(npQ4)-1],npQ4.T[0][len(npQ4)-1]-r +2.925, (2.925-r)/num)
+        for i in np.arange(len(x5)):
+            Q5.append([x5[i], y5])
+        npQ5=np.array(Q5)
+        Q6=[]
+        for i in np.arange(0.0, np.pi/2, np.pi/num):
+            Q6.append([r*np.sin(i)+npQ5.T[0][len(npQ5)-1],r*np.cos(i)+npQ5.T[1][len(npQ5)-1] -r])
+        npQ6=np.array(Q6)
+        Q7=[]
+        y7=np.arange(npQ6.T[1][len(npQ6)-1], npQ6.T[1][len(npQ6)-1]-3.0, -3.0/num)
+        x7=npQ6.T[0][len(npQ6)-1]
+        for i in np.arange(len(y7)):
+            Q7.append([x7, y7[i]])
+        npQ7=np.array(Q7)
+
+        QQ2=[]
+        QQ2.extend(Q4)
+        QQ2.extend(Q5)
+        QQ2.extend(Q6)
+        QQ2.extend(Q7)
+        return Q4, Q5, Q6, Q7
     def circle_making(self, xc, yc , r, i):
         d1=np.sqrt(xc**2 +yc[0]**2)
         d=1.5
@@ -470,15 +914,44 @@ class game(object):
                     y = r* -np.cos(theta) +yc[i]
                     CIRCLE.append([x,y])
         elif i==1:
-            for theta in np.arange(0.0, 2*np.pi, 0.01):
+            for theta in np.arange(0.0, 2*np.pi, 2*np.pi/5000.0):
                 if theta >= t2 and theta <= np.pi -t2:
                     x = r* np.sin(theta) +xc
                     y = r* -np.cos(theta) +yc[i]
                     CIRCLE.append([x,y])
         elif i==2:
-            for theta in np.arange(0.0, 2*np.pi, 0.01):
+            for theta in np.arange(0.0, 2*np.pi, 2*np.pi/5000.0):
                 if theta >= t2 and theta <= np.pi -t2:
                     x = r* -np.sin(theta) +xc
+                    y = r* -np.cos(theta) +yc[i]
+                    CIRCLE.append([x,y])
+        else:
+            print("circle_making arror\n")
+        return CIRCLE
+    def circleMakingBlue(self, xc, yc , r, i):
+        d1=np.sqrt(xc**2 +yc[0]**2)
+        d=1.5
+        t=mt.acos(r/d1)
+        te=mt.asin(abs(xc)/d1)
+        t1=t-te
+        t2=mt.acos(2*r/d)
+        CIRCLE = []
+        if   i==0:
+            for theta in np.arange(0.0, 2*np.pi, 2*np.pi/5000.0):
+                if theta >= t1 and theta <= np.pi -t2:
+                    x = r* np.sin(theta) +xc
+                    y = r* -np.cos(theta) +yc[i]
+                    CIRCLE.append([x,y])
+        elif i==1:
+            for theta in np.arange(0.0, 2*np.pi, 2*np.pi/5000.0):
+                if theta >= t2 and theta <= np.pi -t2:
+                    x = r* -np.sin(theta) +xc
+                    y = r* -np.cos(theta) +yc[i]
+                    CIRCLE.append([x,y])
+        elif i==2:
+            for theta in np.arange(0.0, 2*np.pi, 2*np.pi/5000.0):
+                if theta >= t2 and theta <= np.pi -t2:
+                    x = r* np.sin(theta) +xc
                     y = r* -np.cos(theta) +yc[i]
                     CIRCLE.append([x,y])
         else:
@@ -499,13 +972,13 @@ class game(object):
                     y = r* -np.cos(theta) +yc[i]
                     CIRCLE.append([x,y])
         elif i==1:
-            for theta in np.arange(0.0, 2*np.pi, 0.01):
+            for theta in np.arange(0.0, 2*np.pi, 2*np.pi/5000.0):
                 if theta >= t2 and theta <= np.pi/2:
                     x = r* np.sin(theta) +xc
                     y = r* -np.cos(theta) +yc[i]
                     CIRCLE.append([x,y])
         elif i==2:
-            for theta in np.arange(0.0, 2*np.pi, 0.01):
+            for theta in np.arange(0.0, 2*np.pi, 2*np.pi/5000.0):
                 if theta >= t2 and theta <= np.pi/2:
                     x = r* -np.sin(theta) +xc
                     y = r* -np.cos(theta) +yc[i]
@@ -585,6 +1058,7 @@ class game(object):
         y=0
         ssp=[-0.5,-0.5]
         #V = self.target.get_V()
+        #for index in tqdm(np.arange(start=1, stop=len(vx)-1, step=1, dtype= int)):
         for index in np.arange(start=1, stop=len(vx)-1, step=1, dtype= int):
             x = x + vx[index] * self.dt
             y = y + vy[index] * self.dt
@@ -606,7 +1080,7 @@ class game(object):
             plt.grid(True)
             ims.append(img)
         plt.pause(1)
-        ani = animation.ArtistAnimation(fig, ims, interval=1)
+        ani = animation.ArtistAnimation(fig, ims, interval=8)
         ####
         ax = plt.axes()
         ############################     field     #############################

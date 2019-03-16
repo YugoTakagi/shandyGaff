@@ -27,6 +27,7 @@ class bezier(object):
         list_of_bezier = []
         for t in np.linspace(0, 1, self.number_of_points):
             list_of_bezier.append(self.bezier(num,t,bezier_set))
+        #plt.plot(bezier_set.T[0], bezier_set.T[1], '--o')
         '''
         plt.plot(LOBS.T[0], LOBS.T[1], marker="o")
         #plt.plot(bezier_set1.T[0], bezier_set1.T[1], '--o')

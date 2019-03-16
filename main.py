@@ -6,7 +6,7 @@ import csv
 
 def main():
     ##########################  init controler  ################################
-    gm = game(0.020)
+    gm = game(0.008)
     ############################################################################
 
     #gm.run(False)
@@ -15,7 +15,10 @@ def main():
     #gm.run_cal(False)
     #gm.run_cal(True)
     #gm.run_calab(False)
-    gm.run_calab(True)
+    #gm.run_calab(True)
+    #gm.run_cal2(False)
+    gm.runCalBlue(False)
+    #gm.runWayBlue(False)
 if __name__ == '__main__':
     print("++++    +++   ++  + start main +  ++   +++    ++++")
     main()
